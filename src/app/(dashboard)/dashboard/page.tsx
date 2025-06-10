@@ -18,8 +18,8 @@ const Dashboard = async () => {
   const user = JSON.parse(await redis.get(`Session:${token?.value}`) as string);
   
   return (
-    <section className="mt-5 p-4 lg:p-5 lg:ps-10">
-      <h1 className={`text-3xl lg:text-4xl font-bold ${tillana.className} text-dump mb-2`}>TicTacToe Competition</h1>
+    <section className="mt-5 lg:p-5 lg:ps-10">
+      <h1 className={`text-3xl lg:text-4xl font-bold ${tillana.className} text-center lg:text-start mb-5 text-dump`}>TicTacToe Competition</h1>
       <Alert icon="info" header="Informasi"><p className="text-sm">Halo, <span className="font-bold">{user.username}</span> Selamat datang di TicTacToe Competition, Anda sudah terdaftar sebagai peserta, Pertandingan akan dimulai ketika sudah ada 16 peserta yang sudah mendaftar, Peserta akan diacak secara random, Dipertandingan ini terdapat 4 Ronde, Juara akan diumumkan pada akhir pertandingan</p></Alert>
     </section>
   )

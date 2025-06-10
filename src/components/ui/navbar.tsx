@@ -24,6 +24,10 @@ const Navbar = () => {
             console.log(error);
         }
     }
+
+    const handleRound = (url: string) => {
+        router.push(url);
+    }
     
   return (
     <nav className="w-full bg-slate-100 rounded-md shadow-md p-3 flex justify-between gap-4 items-center">
@@ -33,7 +37,7 @@ const Navbar = () => {
             className={`${pathname === "/dashboard" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2`}
             href="/dashboard"
           >
-            <Home /> Home
+            <Home /> <span className="hidden md:inline-block">Home</span>
           </Link>
         </Button>
         <Button asChild>
@@ -41,12 +45,21 @@ const Navbar = () => {
             className={`${pathname === "/data-peserta" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2`}
             href="/data-peserta"
           >
-            <Users /> Data Peserta
+            <Users /> <span className="hidden md:inline-block">Data Peserta</span>
           </Link>
+        </Button>
+        <Button disabled onClick={() => handleRound("/main/round1")} className={`${pathname === "/main/round1" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2 disabled:cursor-not-allowed`}>
+          R1
+        </Button>
+        <Button disabled onClick={() => handleRound("/main/round2")} className={`${pathname === "/main/round2" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2 disabled:cursor-not-allowed`}>
+          R2
+        </Button>
+        <Button disabled onClick={() => handleRound("/main/round3")} className={`${pathname === "/main/round3" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2 disabled:cursor-not-allowed`}>
+          R3
         </Button>
       </section>
       <Button className="bg-red-500 text-slate-200 shadow flex items-center gap-2 cursor-pointer" onClick={handleLogout}> 
-          <LogOut /> Log out
+          <LogOut /> <span className="hidden md:inline-block">Log out</span>
       </Button>
     </nav>
   );
