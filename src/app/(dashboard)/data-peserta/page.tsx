@@ -26,7 +26,7 @@ const DataPeserta = async () => {
     const user = JSON.parse(await redis.get(`Session:${token?.value}`) as string);
 
   return (
-    <section className='mt-5 p-5 ps-10 overflow-x-hidden overflow-y-auto'>
+    <section className='mt-5 p-4 lg:p-5 lg:ps-10 overflow-x-hidden overflow-y-auto'>
       <h1 className={`text-4xl font-bold ${tillana.className} text-dump mb-2`}>Data Peserta</h1>
       <section className="mt-5 flex flex-wrap gap-5">
         {peserta.map((item, index) => (
