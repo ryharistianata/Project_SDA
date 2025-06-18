@@ -132,6 +132,22 @@ const deleteData = (namaTable: string) => {
     }
 }
 
+const getNamaFileInFolder = (namaTable: string) => {
+    const pathname = path.join(process.cwd(), "src", "data", namaTable);
+    if(fs.existsSync(pathname)) {
+        const filename = fs.readdirSync(pathname);
+        return {
+            message: "success",
+            data: filename
+        };
+    } else {
+        return {
+            message: "Nama table tidak ditemukan",
+            data: []
+        };
+    }
+}
+
 const uploadFile = async (file: File) => {
     const pathname = path.join(process.cwd(), "public", "gambar");
     const arrayBuffer = await file.arrayBuffer();
@@ -146,4 +162,4 @@ const uploadFile = async (file: File) => {
     }
 }
 
-export { getData, writeData, updateData, deleteData, uploadFile };
+export { getData, writeData, updateData, deleteData, uploadFile, getNamaFileInFolder };

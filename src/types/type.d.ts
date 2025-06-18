@@ -43,6 +43,7 @@ interface Team {
   score: number;
   alamat?: string;
   gambar?: string;
+  kalahDari?: string;
 }
 
 export interface Seed {

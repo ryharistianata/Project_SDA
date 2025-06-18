@@ -1,0 +1,26 @@
+{
+  "title": "Finals",
+  "seeds": [
+    {
+      "id": 1,
+      "date": "",
+      "teams": [
+        {
+          "name": "Andikaaa",
+          "score": 0,
+          "gambar": "/gambar/bb0l936.png",
+          "alamat": "sukarame",
+          "tim": "dika"
+        },
+        {
+          "name": "Alysa",
+          "score": 0,
+          "gambar": "/gambar/87zgk8z.png",
+          "alamat": "cilegon",
+          "tim": "assya"
+        }
+      ]
+    }
+  ],
+  "id": "Finals"
+}

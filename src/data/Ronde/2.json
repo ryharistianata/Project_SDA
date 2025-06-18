@@ -6,15 +6,15 @@
       "date": "",
       "teams": [
         {
-          "name": "rheal",
-          "score": 40,
-          "gambar": "/gambar/xa1o8j2.png",
+          "name": "budi",
+          "score": 50,
+          "gambar": "/gambar/5foyomg.png",
           "alamat": "sukarame",
-          "tim": "riyal"
+          "tim": "madun"
         },
         {
           "name": "Alysa",
-          "score": 10,
+          "score": 30,
           "gambar": "/gambar/87zgk8z.png",
           "alamat": "cilegon",
           "tim": "assya"
@@ -26,18 +26,18 @@
       "date": "",
       "teams": [
         {
-          "name": "iqbal",
-          "score": 20,
-          "gambar": "/gambar/kr4f90y.png",
-          "alamat": "ciplaz",
-          "tim": "iqi"
-        },
-        {
           "name": "Andikaaa",
-          "score": 10,
+          "score": 30,
           "gambar": "/gambar/bb0l936.png",
           "alamat": "sukarame",
           "tim": "dika"
+        },
+        {
+          "name": "riki",
+          "score": 50,
+          "gambar": "/gambar/m8xt4q5.png",
+          "alamat": "sukarame",
+          "tim": "riki"
         }
       ]
     }

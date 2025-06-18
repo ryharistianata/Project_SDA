@@ -76,9 +76,9 @@ const Navbar = () => {
           Bracket
         </Button>
         <Button
-          onClick={() => handleRound("/ronde/winner")}
+          onClick={() => handleRound("/juara")}
           className={`${
-            pathname === "/ronde/winner"
+            pathname === "/juara"
               ? "bg-blue-500 text-slate-200"
               : "text-slate-900 border"
           } shadow flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer`}

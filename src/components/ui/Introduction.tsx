@@ -16,18 +16,17 @@ export default function Introduction() {
   return (
     <section className="flex min-h-screen flex-col items-center justify-center gap-2">
       <BlurText
-        text="TicTacToe Competition"
+        text="Bracket Competition"
         delay={500}
         animateBy="words"
         direction="top"
         className="text-center poppins-bold text-3xl lg:text-6xl text-dump"
       />
       <SplitText
-        text="TicTacToe Competition is an online game where you can play against other
-        players, Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt
-        accusamus quam nulla expedita quasi ut, quos odit nihil magni iste quis
-        hic nemo asperiores labore aliquam. Nihil neque hic saepe!"
-        className="text-center text-sm mt-5 w-[90%] lg:w3/5"
+        text="Bracket Competition is an online game where you can play against other
+        players, so we present to you our beloved project for final exam project data structure 
+        and algorithm at computer science unila 2025. So, welcome to Bracket Competition!"
+        className="text-center text-sm mt-5 w-[89%] lg:w3/5"
         delay={20}
         duration={.4}
         ease="power3.out"

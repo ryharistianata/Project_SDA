@@ -20,7 +20,6 @@ const formValidationLogin = async (prev: unknown, formData: FormData) => {
       const cookie = await cookies();
       const session = Math.random().toString(36).substring(2, 7);
       const { message, data: token } = getData("Session", { id: dataUser.id });
-      console.log(token);
       if(message === "success") {
         deleteData(`Session:${token.id}`);
       }

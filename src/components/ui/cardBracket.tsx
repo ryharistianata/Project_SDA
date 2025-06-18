@@ -3,8 +3,6 @@
 import { Minus, Plus } from "lucide-react";
 import { Button } from "./button";
 import Image from "next/image";
-import useSWR from "swr";
-import Loading from "@/app/loading";
 import { Fragment, useEffect, useState } from "react";
 import { Seed } from "@/types/type";
 import { updateBracket } from "@/lib/pertandingan";
@@ -12,19 +10,14 @@ import { useRouter } from "next/navigation";
 import { MixinAlert } from "@/lib/alert";
 
 
-const fetcher = (...args: Parameters<typeof fetch>) =>
-  fetch(...args).then((res) => res.json());
 
-const CardBracket = ({ ronde }: { ronde: string }) => {
+const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string; folder:string }) => {
   const [skor, setSkor] = useState<Seed[]>([]);
-  const { data, isLoading } = useSWR(`/api/ronde/${ronde}`, fetcher);
   const router = useRouter();
 
   useEffect(() => {
-    setSkor(data?.data?.seeds);
-  }, [data]);
-
-  if (isLoading) return <Loading />;
+    setSkor(peserta.seeds);
+  }, [peserta]);
 
   const handlePlus = (indexSeed: number, indexTeam: number) => {
     setSkor((prevSkor: Seed[]) => {
@@ -51,7 +44,7 @@ const CardBracket = ({ ronde }: { ronde: string }) => {
   };
 
   const handleSubmit = async () => {
-    const nextRound = await updateBracket(skor, ronde);
+    const nextRound = await updateBracket(skor, ronde, folder);
     MixinAlert("success", "Beralih ke ronde selanjutnya");
     router.push(`/ronde/${nextRound}`);
   }
@@ -60,8 +53,8 @@ const CardBracket = ({ ronde }: { ronde: string }) => {
     return (
       <section className="h-[60vh] w-screen flex items-center justify-center">
         <section className="w-80 bg-slate-100 p-4 rounded-md shadow flex justify-center items-center flex-col">
-          <h1 className="text-2xl poppins-semibold">{skor && skor[0].teams[0].name == "" ? "Belum Ada Juara" : skor && skor[0].teams[0].name}</h1>
-          <p className="text-slate-500">{skor && skor[0].teams[0].tim}</p>
+          <h1 className="text-2xl poppins-semibold">{skor && skor[0]?.teams[0]?.name == "" ? "Belum Ada Juara" : skor && skor[0]?.teams[0]?.name}</h1>
+          <p className="text-slate-500">{skor && skor[0]?.teams[0]?.tim}</p>
         </section>
       </section>
     )
@@ -69,7 +62,7 @@ const CardBracket = ({ ronde }: { ronde: string }) => {
 
   return (
     <section className="mt-5 flex gap-5 justify-center flex-col">
-      {skor && skor[0]?.teams[0].name == "" && (
+      {skor && skor[0]?.teams[0]?.name == "" && (
         <section className="flex items-center justify-center gap-5">
           <h1 className="text-2xl poppins-semibold">Belum Ada Pertandingan</h1>
         </section>
