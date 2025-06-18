@@ -22,7 +22,7 @@ const Alert = ({
 
   return (
     <section className="bg-blue-300/50 text-slate-900 border-l-5 shadow rounded-md p-4 border border-blue-600">
-      <h1 className="font-bold mb-2 flex items-center gap-2">{setIcon(icon)} {header}</h1>
+      <h1 className="poppins-semibold mb-2 flex items-center gap-2">{setIcon(icon)} {header}</h1>
       {children}
     </section>
   )

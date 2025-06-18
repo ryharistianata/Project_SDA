@@ -2,24 +2,20 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const cookie = await cookies();
   const token = cookie.get("Session");
   const path = request.nextUrl.pathname;
-
-  if (token) {
-    const session = await (
-      await fetch(
-        `${process.env.NEXT_PUBLIC_UPSTASH_URI}/get/Session:${token.value}`,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_UPSTASH_REDIS}`,
-          },
-        }
-      )
-    ).json();
-    if (!session.result) {
+  const baseUrl = request.nextUrl.origin;
+  
+  if(token) {
+    const response = await fetch(`${baseUrl}/api/user`, {
+      headers: {
+        Cookie: `Session=${token.value}`,
+      }
+    });
+    const { message }: { message: string } = await response.json();
+    if(message !== "success") {
       cookie.delete("Session");
       return NextResponse.redirect(new URL("/login", request.url));
     }
@@ -33,10 +29,22 @@ export async function middleware(request: NextRequest) {
     if (!token) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
+
+    if(path.startsWith("/ronde")) {
+      const round = path.split("/").pop();
+      const response = await fetch(`${baseUrl}/api/ronde/${round}`, {
+        headers: {
+          Cookie: `Session=${token.value}`,
+        }
+      });
+      const { message } = await response.json();
+      if(message !== "success") {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+    }
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/dashboard", "/register", "/login", "/api/:path*", "/data-peserta"],
+  matcher: ["/dashboard", "/register", "/login", "/data-peserta","/ronde/:round"],
 };

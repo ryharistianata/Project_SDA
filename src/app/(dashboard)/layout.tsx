@@ -11,4 +11,4 @@ const LayoutDashboard = ({
   )
 }
 
-export default LayoutDashboard
+export default LayoutDashboard;

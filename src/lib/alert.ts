@@ -21,30 +21,28 @@ const MixinAlert = (
   });
 };
 
-const ConfirmAlert = (
+const ConfirmAlert = async (
   text: string,
   icon: "error" | "warning" | "info" | "success"
 ) => {
-  return new Promise((resolve, reject) => {
-    Swal.fire({
-      title: "Apakah kamu yakin?",
-      text,
-      icon,
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Ya, keluar!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        resolve(true);
-      } else {
-        reject(false);
-      }
-    });
+  const response = await Swal.fire({
+    title: "Apakah kamu yakin?",
+    text,
+    icon,
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Ya, keluar!",
   });
+
+  return response.isConfirmed;
 };
 
-const BoxAlert = (title: string, text: string, icon: "error" | "warning" | "info" | "success") => {
+const BoxAlert = (
+  title: string,
+  text: string,
+  icon: "error" | "warning" | "info" | "success"
+) => {
   Swal.fire({
     title,
     text,

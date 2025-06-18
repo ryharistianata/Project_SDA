@@ -1,0 +1,46 @@
+{
+  "title": "2",
+  "seeds": [
+    {
+      "id": 1,
+      "date": "",
+      "teams": [
+        {
+          "name": "rheal",
+          "score": 40,
+          "gambar": "/gambar/xa1o8j2.png",
+          "alamat": "sukarame",
+          "tim": "riyal"
+        },
+        {
+          "name": "Alysa",
+          "score": 10,
+          "gambar": "/gambar/87zgk8z.png",
+          "alamat": "cilegon",
+          "tim": "assya"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "date": "",
+      "teams": [
+        {
+          "name": "iqbal",
+          "score": 20,
+          "gambar": "/gambar/kr4f90y.png",
+          "alamat": "ciplaz",
+          "tim": "iqi"
+        },
+        {
+          "name": "Andikaaa",
+          "score": 10,
+          "gambar": "/gambar/bb0l936.png",
+          "alamat": "sukarame",
+          "tim": "dika"
+        }
+      ]
+    }
+  ],
+  "id": "2"
+}

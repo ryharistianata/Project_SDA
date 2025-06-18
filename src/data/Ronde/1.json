@@ -1,0 +1,86 @@
+{
+  "title": "1",
+  "seeds": [
+    {
+      "id": 1,
+      "date": "",
+      "teams": [
+        {
+          "name": "rheal",
+          "score": 20,
+          "gambar": "/gambar/xa1o8j2.png",
+          "alamat": "sukarame",
+          "tim": "riyal"
+        },
+        {
+          "name": "Fiki",
+          "score": 10,
+          "gambar": "/gambar/nu1ug9l.png",
+          "alamat": "kampung baru",
+          "tim": "Unila"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "date": "",
+      "teams": [
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        },
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "date": "",
+      "teams": [
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        },
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "date": "",
+      "teams": [
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        },
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        }
+      ]
+    }
+  ],
+  "id": "1"
+}

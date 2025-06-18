@@ -17,13 +17,13 @@ const Card = ({ peserta, user }: { peserta: User, user: User }) => {
       </section>
       <section className="flex flex-col justify-between">
         <section>
-          <h1 className="font-bold">{peserta.username}</h1>
+          <h1 className="poppins-semibold">{peserta.username}</h1>
           <h2 className="text-xs text-slate-800">
-            Tim <span className="font-bold">{peserta.namaTim}</span>
+            Tim <span className="poppins-semibold">{peserta.namaTim}</span>
           </h2>
         </section>
         <section>
-          <p className="text-xs text-slate-800 font-bold">Pendaftaran:</p>
+          <p className="text-xs text-slate-800 poppins-semibold">Pendaftaran:</p>
           <p className="text-xs text-slate-600 italic">{peserta.createdAt}</p>
         </section>
       </section>

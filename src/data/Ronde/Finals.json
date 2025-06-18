@@ -1,0 +1,26 @@
+{
+  "title": "Finals",
+  "seeds": [
+    {
+      "id": 1,
+      "date": "",
+      "teams": [
+        {
+          "name": "rheal",
+          "score": 40,
+          "gambar": "/gambar/xa1o8j2.png",
+          "alamat": "sukarame",
+          "tim": "riyal"
+        },
+        {
+          "name": "iqbal",
+          "score": 10,
+          "gambar": "/gambar/kr4f90y.png",
+          "alamat": "ciplaz",
+          "tim": "iqi"
+        }
+      ]
+    }
+  ],
+  "id": "Finals"
+}

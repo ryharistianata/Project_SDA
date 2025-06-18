@@ -87,7 +87,7 @@ const FormLogin = () => {
         Belum punya akun?{" "}
         <Link
           href={"/register"}
-          className="text-slate-900 font-semibold cursor-pointer"
+          className="text-slate-900 poppins-semibold cursor-pointer"
         >
           Daftar
         </Link>

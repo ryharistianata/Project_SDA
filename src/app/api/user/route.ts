@@ -1,13 +1,21 @@
-import redis from "@/lib/redis";
+import { getData } from "@/lib/database";
+import { User } from "@/types/type";
 import { cookies } from "next/headers";
 
 
 export const GET = async () => {
-    const cookie = await cookies();
-    const token = cookie.get("Session");
-    const user = await redis.get(`Session:${token?.value}`);
-    if(user) {
-        return new Response(JSON.stringify(JSON.parse(user)), { status: 200 });
-    }
-    return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+    const token = await cookies();
+    const session = token.get("Session");
+    
+    if(session) {   
+        const { data: user, message }: { data: User, message: string } = getData(`Session:${session.value}`);
+        if(message === "success") { 
+            return new Response(JSON.stringify({ message: "success", data: user }), { status: 200 });
+        } else {
+            return new Response(JSON.stringify({ message: "Data not found", data: [] }), { status: 404 });
+        }
+    } else {
+        return new Response(JSON.stringify({ message: "Unauthorized" }), { status: 401 });
+    }   
+   
 }

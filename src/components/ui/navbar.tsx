@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client"
+"use client";
 
 import Link from "next/link";
 import { Button } from "./button";
@@ -7,34 +7,45 @@ import { Home, LogOut, Users } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { logout } from "@/lib/formvalidation";
 import { BoxAlert, ConfirmAlert } from "@/lib/alert";
+import useSWR from "swr";
+import Loading from "@/app/loading";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Navbar = () => {
-    const pathname = usePathname();
-    const router = useRouter();
-    
-    const handleLogout = async () => {
-        try {
-            const response = await ConfirmAlert("Apakah anda yakin ingin logout?", "warning");
-            if(response) {
-                await logout();
-                BoxAlert("Berhasil Logout", "success", "success");
-                router.push("/login");
-            };
-        } catch(error) {
-            console.log(error);
-        }
-    }
+  const pathname = usePathname();
+  const router = useRouter();
 
-    const handleRound = (url: string) => {
-        router.push(url);
-    }
-    
+  const { data: ronde, isLoading: loading1 } = useSWR("/api/ronde", fetcher);
+
+  if(loading1) return <Loading />
+
+  const handleLogout = async () => {
+    const response = await ConfirmAlert(
+      "Apakah anda yakin ingin logout?",
+      "warning"
+    );
+    if (response) {
+      await logout();
+      BoxAlert("Berhasil Logout", "success", "success");
+      router.push("/login");
+    } 
+  };
+
+  const handleRound = (url: string) => {
+    router.push(url);
+  };
+
   return (
     <nav className="w-full bg-slate-100 rounded-md shadow-md p-3 flex justify-between gap-4 items-center">
       <section className="flex items-center gap-2">
         <Button asChild>
           <Link
-            className={`${pathname === "/dashboard" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2`}
+            className={`${
+              pathname === "/dashboard"
+                ? "bg-blue-500 text-slate-200"
+                : "text-slate-900 border"
+            } shadow flex items-center gap-2`}
             href="/dashboard"
           >
             <Home /> <span className="hidden md:inline-block">Home</span>
@@ -42,24 +53,44 @@ const Navbar = () => {
         </Button>
         <Button asChild>
           <Link
-            className={`${pathname === "/data-peserta" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2`}
+            className={`${
+              pathname === "/data-peserta"
+                ? "bg-blue-500 text-slate-200"
+                : "text-slate-900 border"
+            } shadow flex items-center gap-2`}
             href="/data-peserta"
           >
-            <Users /> <span className="hidden md:inline-block">Data Peserta</span>
+            <Users />{" "}
+            <span className="hidden md:inline-block">Data Peserta</span>
           </Link>
         </Button>
-        <Button disabled onClick={() => handleRound("/main/round1")} className={`${pathname === "/main/round1" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2 disabled:cursor-not-allowed`}>
-          R1
+        <Button
+          disabled={ronde?.message === "success" ? false : true}
+          onClick={() => handleRound("/bracket")}
+          className={`${
+            pathname === "/bracket"
+              ? "bg-blue-500 text-slate-200"
+              : "text-slate-900 border"
+          } shadow flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer`}
+        >
+          Bracket
         </Button>
-        <Button disabled onClick={() => handleRound("/main/round2")} className={`${pathname === "/main/round2" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2 disabled:cursor-not-allowed`}>
-          R2
-        </Button>
-        <Button disabled onClick={() => handleRound("/main/round3")} className={`${pathname === "/main/round3" ? "bg-blue-500 text-slate-200" : "text-slate-900 border"} shadow flex items-center gap-2 disabled:cursor-not-allowed`}>
-          R3
+        <Button
+          onClick={() => handleRound("/ronde/winner")}
+          className={`${
+            pathname === "/ronde/winner"
+              ? "bg-blue-500 text-slate-200"
+              : "text-slate-900 border"
+          } shadow flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer`}
+        >
+          Juara
         </Button>
       </section>
-      <Button className="bg-red-500 text-slate-200 shadow flex items-center gap-2 cursor-pointer" onClick={handleLogout}> 
-          <LogOut /> <span className="hidden md:inline-block">Log out</span>
+      <Button
+        className="bg-red-500 text-slate-200 shadow flex items-center gap-2 cursor-pointer"
+        onClick={handleLogout}
+      >
+        <LogOut /> <span className="hidden md:inline-block">Log out</span>
       </Button>
     </nav>
   );

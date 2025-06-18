@@ -20,7 +20,7 @@ export default function Introduction() {
         delay={500}
         animateBy="words"
         direction="top"
-        className="text-center font-black text-3xl lg:text-6xl text-dump"
+        className="text-center poppins-bold text-3xl lg:text-6xl text-dump"
       />
       <SplitText
         text="TicTacToe Competition is an online game where you can play against other
