@@ -138,8 +138,7 @@ const createBracket = async (peserta: User[]) => {
 
 const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
   // AMBIL PEMENANG PESERTA MASUKAN DALAM ARRAY
-  const pesertaPemenang = peserta
-    .map((seed) => {
+  const pesertaPemenang = peserta.map((seed) => {
       const [team1, team2] = seed.teams;
       if (team1.name !== "" && team2.name !== "") {
         return team1.score > team2.score ? team1 : team2;
@@ -150,8 +149,10 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
 
   let nextRonde = "";
   let currentRonde = "";
+  const { data: dataRepechange } = getData("Repechange");
+  const totalCurrentPeserta = dataRepechange.map((item: any) => item?.seeds).flat();
   const { data: dataPeserta } = getData(`User`);
-  const totalPeserta = dataPeserta.length;
+  const totalPeserta = folder == "Repechange" ? totalCurrentPeserta.length : dataPeserta.length;
 
   // CARI RONDE SELANJUTNYA
   if (totalPeserta == 2) {
@@ -283,7 +284,8 @@ const getRepechangeParticipants = () => {
   const defeatedPlayers: Set<string> = new Set();
 
   // Cek semua ronde sebelumnya (kecuali Winner dan Finals)
-  const allRounds = getNamaFileInFolder("Ronde").data.map((file: string) => file != "Finals" && file != "Winner" ? file.split(".").unshift() : ""); // tambahkan sesuai banyaknya ronde maksimal
+  const kecuali = ["Winner", "Finals"];
+  const allRounds = getNamaFileInFolder("Ronde").data.map((file: string) => file.split(".")[0]).filter((round: string) => !kecuali.includes(round)); // Ambil semua ronde kecuali Winner dan Finals
   for (const ronde of allRounds) {
     const { message, data } = getData(`Ronde:${ronde}`);
     if (message !== "success") continue;

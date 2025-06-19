@@ -6,11 +6,18 @@
       "date": "",
       "teams": [
         {
-          "name": "rheal",
+          "name": "ikbal",
           "score": 0,
-          "gambar": "/gambar/xa1o8j2.png",
-          "alamat": "sukarame",
-          "tim": "riyal"
+          "gambar": "/gambar/laheny7.png",
+          "alamat": "sekret",
+          "tim": "medin"
+        },
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     }

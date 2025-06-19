@@ -6,18 +6,18 @@
       "date": "",
       "teams": [
         {
-          "name": "iqbal",
+          "name": "budi",
           "score": 20,
-          "gambar": "/gambar/kr4f90y.png",
-          "alamat": "ciplaz",
-          "tim": "iqi"
+          "gambar": "/gambar/5foyomg.png",
+          "alamat": "sukarame",
+          "tim": "madun"
         },
         {
-          "name": "riki",
-          "score": 30,
-          "gambar": "/gambar/m8xt4q5.png",
-          "alamat": "sukarame",
-          "tim": "riki"
+          "name": "bedul",
+          "score": 40,
+          "gambar": "/gambar/dgs1k1u.jpg",
+          "alamat": "lampung",
+          "tim": "4x"
         }
       ]
     }

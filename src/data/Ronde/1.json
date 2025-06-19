@@ -7,62 +7,22 @@
       "teams": [
         {
           "name": "budi",
-          "score": 20,
+          "score": 30,
           "gambar": "/gambar/5foyomg.png",
           "alamat": "sukarame",
           "tim": "madun"
         },
         {
-          "name": "iqbal",
-          "score": 40,
-          "gambar": "/gambar/kr4f90y.png",
-          "alamat": "ciplaz",
-          "tim": "iqi"
+          "name": "ikbal",
+          "score": 0,
+          "gambar": "/gambar/laheny7.png",
+          "alamat": "sekret",
+          "tim": "medin"
         }
       ]
     },
     {
       "id": 2,
-      "date": "",
-      "teams": [
-        {
-          "name": "Fiki",
-          "score": 70,
-          "gambar": "/gambar/nu1ug9l.png",
-          "alamat": "kampung baru",
-          "tim": "Unila"
-        },
-        {
-          "name": "Alysa",
-          "score": 40,
-          "gambar": "/gambar/87zgk8z.png",
-          "alamat": "cilegon",
-          "tim": "assya"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "date": "",
-      "teams": [
-        {
-          "name": "Andikaaa",
-          "score": 10,
-          "gambar": "/gambar/bb0l936.png",
-          "alamat": "sukarame",
-          "tim": "dika"
-        },
-        {
-          "name": "rheal",
-          "score": 20,
-          "gambar": "/gambar/xa1o8j2.png",
-          "alamat": "sukarame",
-          "tim": "riyal"
-        }
-      ]
-    },
-    {
-      "id": 4,
       "date": "",
       "teams": [
         {

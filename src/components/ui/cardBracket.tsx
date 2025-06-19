@@ -46,7 +46,11 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
   const handleSubmit = async () => {
     const nextRound = await updateBracket(skor, ronde, folder);
     MixinAlert("success", "Beralih ke ronde selanjutnya");
-    router.push(`/ronde/${nextRound}`);
+    if(nextRound) {
+      router.push(`/${folder.toLocaleLowerCase()}/${nextRound.toLowerCase()}`);
+    } else {
+      router.push(`/dashboard`);
+    }
   }
 
   if(ronde.toLowerCase() == "winner") {
