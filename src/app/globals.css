@@ -4,21 +4,21 @@
 /* Poppins */
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  src: url("/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/poppins/Poppins-Light.ttf") format("truetype");
+  src: url("/fonts/Poppins/Poppins-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
@@ -26,14 +26,14 @@
 /* Tillana */
 @font-face {
   font-family: "Tillana";
-  src: url("/fonts/tillana/Tillana-Regular.ttf") format("truetype");
+  src: url("/fonts/Tillana/Tillana-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Tillana";
-  src: url("/fonts/tillana/Tillana-Bold.ttf") format("truetype");
+  src: url("/fonts/Tillana/Tillana-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }

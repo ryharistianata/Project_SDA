@@ -5,8 +5,7 @@ import { redirect } from "next/navigation";
 const Juara = () => {
   const { message: rondWin, data: dataWin } = getData("Ronde:winner");
   const { message: rondFin, data: dataFin } = getData("Ronde:finals");
-  const { message: messageDataFin, data: RepDataFin } =
-    getData("Repechange:winner");
+  const { message: messageDataFin, data: RepDataFin } = getData("Repechange:winner");
 
   if (
     messageDataFin !== "success" ||
@@ -31,7 +30,7 @@ const Juara = () => {
               src={juara2?.gambar}
               width={100}
               height={100}
-              alt="Riki"
+              alt={juara2?.name}
               className="rounded-full w-30 h-30 border-2 shadow-perak border-slate-300"
             />
           )}
@@ -55,7 +54,7 @@ const Juara = () => {
                 src={juara1?.gambar}
                 width={100}
                 height={100}
-                alt="Riki"
+                alt={juara1?.name}
                 className="rounded-full w-30 h-30 border-2 shadow-winner border-amber-300"
               />
             </>
@@ -71,7 +70,7 @@ const Juara = () => {
               src={juara3?.gambar}
               width={100}
               height={100}
-              alt="Riki"
+              alt={juara3?.name}
               className="rounded-full w-30 h-30 border-2 shadow-perunggu border-[#CD7F32]"
             />
           )}

@@ -7,14 +7,14 @@
       "teams": [
         {
           "name": "budi",
-          "score": 40,
+          "score": 30,
           "gambar": "/gambar/5foyomg.png",
           "alamat": "sukarame",
           "tim": "madun"
         },
         {
           "name": "iqbal",
-          "score": 10,
+          "score": 40,
           "gambar": "/gambar/kr4f90y.png",
           "alamat": "ciplaz",
           "tim": "iqi"
@@ -27,7 +27,7 @@
       "teams": [
         {
           "name": "Fiki",
-          "score": 20,
+          "score": 10,
           "gambar": "/gambar/nu1ug9l.png",
           "alamat": "kampung baru",
           "tim": "Unila"
@@ -47,7 +47,7 @@
       "teams": [
         {
           "name": "Andikaaa",
-          "score": 30,
+          "score": 10,
           "gambar": "/gambar/bb0l936.png",
           "alamat": "sukarame",
           "tim": "dika"

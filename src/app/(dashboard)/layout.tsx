@@ -1,5 +1,4 @@
 import Navbar from "@/components/ui/navbar"
-import "./globals.css";
 
 const LayoutDashboard = ({
     children,
