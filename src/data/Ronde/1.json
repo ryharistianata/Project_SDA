@@ -7,7 +7,7 @@
       "teams": [
         {
           "name": "budi",
-          "score": 30,
+          "score": 20,
           "gambar": "/gambar/5foyomg.png",
           "alamat": "sukarame",
           "tim": "madun"
@@ -27,14 +27,14 @@
       "teams": [
         {
           "name": "Fiki",
-          "score": 10,
+          "score": 70,
           "gambar": "/gambar/nu1ug9l.png",
           "alamat": "kampung baru",
           "tim": "Unila"
         },
         {
           "name": "Alysa",
-          "score": 30,
+          "score": 40,
           "gambar": "/gambar/87zgk8z.png",
           "alamat": "cilegon",
           "tim": "assya"
@@ -54,7 +54,7 @@
         },
         {
           "name": "rheal",
-          "score": 10,
+          "score": 20,
           "gambar": "/gambar/xa1o8j2.png",
           "alamat": "sukarame",
           "tim": "riyal"

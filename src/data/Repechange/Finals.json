@@ -7,17 +7,17 @@
       "teams": [
         {
           "name": "rheal",
-          "score": 30,
+          "score": 20,
           "gambar": "/gambar/xa1o8j2.png",
           "alamat": "sukarame",
           "tim": "riyal"
         },
         {
-          "name": "Alysa",
+          "name": "Fiki",
           "score": 10,
-          "gambar": "/gambar/87zgk8z.png",
-          "alamat": "cilegon",
-          "tim": "assya"
+          "gambar": "/gambar/nu1ug9l.png",
+          "alamat": "kampung baru",
+          "tim": "Unila"
         }
       ]
     }

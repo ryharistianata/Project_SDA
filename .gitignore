@@ -10,6 +10,7 @@
 !.yarn/releases
 !.yarn/versions
 .env
+bracket_uas.zip
 
 # testing
 /coverage
