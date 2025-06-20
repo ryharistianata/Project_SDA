@@ -13,11 +13,11 @@
           "tim": "external"
         },
         {
-          "name": "bedul",
-          "score": 10,
-          "gambar": "/gambar/dgs1k1u.jpg",
-          "alamat": "lampung",
-          "tim": "4x"
+          "name": "Roni",
+          "score": 20,
+          "gambar": "/person.png",
+          "alamat": "banten",
+          "tim": "rafai"
         }
       ]
     },
@@ -27,17 +27,17 @@
       "teams": [
         {
           "name": "dono",
-          "score": 10,
+          "score": 30,
           "gambar": "/person.png",
           "alamat": "sekret",
           "tim": "surabaya"
         },
         {
-          "name": "ikbal",
-          "score": 30,
-          "gambar": "/gambar/laheny7.png",
-          "alamat": "sekret",
-          "tim": "medin"
+          "name": "tung tung sahur",
+          "score": 10,
+          "gambar": "/gambar/dgs1k1u.jpg",
+          "alamat": "lampung",
+          "tim": "4x"
         }
       ]
     }

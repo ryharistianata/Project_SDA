@@ -7,17 +7,17 @@
       "teams": [
         {
           "name": "rudi",
-          "score": 20,
+          "score": 30,
           "gambar": "/person.png",
           "alamat": "sukarame",
           "tim": "external"
         },
         {
-          "name": "ikbal",
+          "name": "dono",
           "score": 10,
-          "gambar": "/gambar/laheny7.png",
+          "gambar": "/person.png",
           "alamat": "sekret",
-          "tim": "medin"
+          "tim": "surabaya"
         }
       ]
     }

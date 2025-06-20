@@ -6,18 +6,18 @@
       "date": "",
       "teams": [
         {
-          "name": "rafly",
-          "score": 20,
-          "gambar": "/person.png",
-          "alamat": "sekret",
-          "tim": "keilmuan"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         },
         {
-          "name": "bedul",
+          "name": "",
           "score": 0,
-          "gambar": "/gambar/dgs1k1u.jpg",
-          "alamat": "lampung",
-          "tim": "4x"
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     }

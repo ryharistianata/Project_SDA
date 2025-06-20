@@ -7,14 +7,14 @@
       "teams": [
         {
           "name": "rudi",
-          "score": 50,
+          "score": 30,
           "gambar": "/person.png",
           "alamat": "sukarame",
           "tim": "external"
         },
         {
           "name": "rafly",
-          "score": 40,
+          "score": 10,
           "gambar": "/person.png",
           "alamat": "sekret",
           "tim": "keilmuan"
@@ -27,14 +27,14 @@
       "teams": [
         {
           "name": "bedul",
-          "score": 30,
+          "score": 0,
           "gambar": "/gambar/dgs1k1u.jpg",
           "alamat": "lampung",
           "tim": "4x"
         },
         {
           "name": "Roni",
-          "score": 10,
+          "score": 20,
           "gambar": "/person.png",
           "alamat": "banten",
           "tim": "rafai"
@@ -47,14 +47,14 @@
       "teams": [
         {
           "name": "budi",
-          "score": 10,
+          "score": 0,
           "gambar": "/gambar/5foyomg.png",
           "alamat": "sukarame",
           "tim": "madun"
         },
         {
           "name": "dono",
-          "score": 30,
+          "score": 20,
           "gambar": "/person.png",
           "alamat": "sekret",
           "tim": "surabaya"
@@ -66,18 +66,18 @@
       "date": "",
       "teams": [
         {
-          "name": "",
-          "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "name": "tung tung sahur",
+          "score": 10,
+          "gambar": "/gambar/dgs1k1u.jpg",
+          "alamat": "lampung",
+          "tim": "4x"
         },
         {
-          "name": "",
+          "name": "ikbal",
           "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "gambar": "/gambar/laheny7.png",
+          "alamat": "sekret",
+          "tim": "medin"
         }
       ]
     }
