@@ -1,5 +1,5 @@
 {
-  "title": "Winner",
+  "title": "Finals",
   "seeds": [
     {
       "id": 1,
@@ -7,13 +7,20 @@
       "teams": [
         {
           "name": "rafly",
-          "score": 0,
+          "score": 20,
           "gambar": "/person.png",
           "alamat": "sekret",
           "tim": "keilmuan"
+        },
+        {
+          "name": "bedul",
+          "score": 0,
+          "gambar": "/gambar/dgs1k1u.jpg",
+          "alamat": "lampung",
+          "tim": "4x"
         }
       ]
     }
   ],
-  "id": "Winner"
+  "id": "Finals"
 }

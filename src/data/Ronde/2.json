@@ -1,0 +1,46 @@
+{
+  "title": "2",
+  "seeds": [
+    {
+      "id": 1,
+      "date": "",
+      "teams": [
+        {
+          "name": "rudi",
+          "score": 30,
+          "gambar": "/person.png",
+          "alamat": "sukarame",
+          "tim": "external"
+        },
+        {
+          "name": "bedul",
+          "score": 10,
+          "gambar": "/gambar/dgs1k1u.jpg",
+          "alamat": "lampung",
+          "tim": "4x"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "date": "",
+      "teams": [
+        {
+          "name": "dono",
+          "score": 10,
+          "gambar": "/person.png",
+          "alamat": "sekret",
+          "tim": "surabaya"
+        },
+        {
+          "name": "ikbal",
+          "score": 30,
+          "gambar": "/gambar/laheny7.png",
+          "alamat": "sekret",
+          "tim": "medin"
+        }
+      ]
+    }
+  ],
+  "id": "2"
+}

@@ -1,0 +1,46 @@
+{
+  "title": "1",
+  "seeds": [
+    {
+      "id": 1,
+      "date": "",
+      "teams": [
+        {
+          "name": "rafly",
+          "score": 30,
+          "gambar": "/person.png",
+          "alamat": "sekret",
+          "tim": "keilmuan"
+        },
+        {
+          "name": "dono",
+          "score": 20,
+          "gambar": "/person.png",
+          "alamat": "sekret",
+          "tim": "surabaya"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "date": "",
+      "teams": [
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        },
+        {
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
+        }
+      ]
+    }
+  ],
+  "id": "1"
+}

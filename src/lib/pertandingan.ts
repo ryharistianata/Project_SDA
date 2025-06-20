@@ -1,21 +1,39 @@
 "use server";
 
 import { Seed, User } from "@/types/type";
-import { deleteData, getData, getNamaFileInFolder, writeData } from "./database";
+import {
+  deleteData,
+  getData,
+  getNamaFileInFolder,
+  writeData,
+} from "./database";
+import { redirect } from "next/navigation";
+import { MixinAlert } from "./alert";
 
 const RoundRobbin = (n: number) => Math.pow(2, Math.ceil(Math.log2(n)));
 
 const createBracket = async (peserta: User[]) => {
   if (!peserta.length) return false;
 
+  // RESET SEMUA DATA
   const { message, data: fileRepechange } = getNamaFileInFolder("Repechange");
-  const { message: messageRonde, data: fileRonde } = getNamaFileInFolder("Ronde");
-  if (message === "success" || messageRonde === "success") {
+  const { message: messageRonde, data: fileRonde } =
+    getNamaFileInFolder("Ronde");
+  const { message: messageAntrian, data: fileAntrian } =
+    getNamaFileInFolder("Antrian");
+  if (message === "success") {
     for (const file of fileRepechange) {
       deleteData(`Repechange:${file.split(".")[0]}`);
     }
+  }
+  if (messageRonde === "success") {
     for (const file of fileRonde) {
       deleteData(`Ronde:${file.split(".")[0]}`);
+    }
+  }
+  if (messageAntrian === "success") {
+    for (const file of fileAntrian) {
+      deleteData(`Antrian:${file.split(".")[0]}`);
     }
   }
 
@@ -138,21 +156,115 @@ const createBracket = async (peserta: User[]) => {
 
 const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
   // AMBIL PEMENANG PESERTA MASUKAN DALAM ARRAY
-  const pesertaPemenang = peserta.map((seed) => {
+  const antrian: Seed[] = [];
+  const pesertaPemenang = peserta
+    .map((seed) => {
       const [team1, team2] = seed.teams;
       if (team1.name !== "" && team2.name !== "") {
-        return team1.score > team2.score ? team1 : team2;
+        // CEK JIKA SCORE SAMA MASUK KEDALAM ANTRIAN
+        if (team1.score === team2.score) {
+          antrian.push(seed);
+          return {
+            name: "",
+            score: 0,
+            gambar: "",
+            alamat: "",
+            tim: "",
+          };
+        } else {
+          // CEK JIKA SCORE BERBEDA MASUK KEDALAM PEMENANG
+          return team1.score > team2.score ? team1 : team2;
+        }
       }
       return null;
     })
     .filter(Boolean);
 
+  // CEK RONDE ANTRIAN
+  if (folder != "Antrian") {
+    const { message: messageAntrian } = getData(`Antrian:${ronde}`);
+    if (messageAntrian === "success") {
+      MixinAlert("info", "Masuk kedalam antrian");
+      redirect(`/antrian/${ronde}`);
+    }
+  }
+
+  // CEK RONDE ANTRIAN PESERTA
+  if (folder == "Antrian") {
+    // CEK JIKA SKOR MASIH SAMA LAGI MASUK KEDALAM ANTRIAN
+    if(antrian.length > 0) {
+      MixinAlert("warning", "Skor masih sama, masuk kedalam antrian");
+      redirect(`/antrian/${ronde}`);
+    }
+
+    // AMBIL DATA PESERTA ANTRIAN
+    const { data: dataAntrian, message: messageAntrian } = getData(
+      `Antrian:${ronde}`
+    );
+
+    if (messageAntrian === "success") {
+      const { message: messageSebelum, data: rondeSebelum } = getData(
+        `${dataAntrian.bracket}:${dataAntrian.title}`
+      );
+
+
+      if (messageSebelum === "success") {
+        for (
+          let i = 0, index = 0;
+          i < rondeSebelum.seeds.length && index < pesertaPemenang.length;
+          i++
+        ) {
+          const seed = rondeSebelum.seeds[i];
+
+          for (let t = 0; t < seed.teams.length; t++) {
+            if (seed.teams[t].name === "") {
+              const antrian = pesertaPemenang[index];
+              seed.teams[t] = {
+                name: antrian?.name,
+                score: 0,
+                gambar: antrian?.gambar,
+                alamat: antrian?.alamat,
+                tim: antrian?.tim,
+              };
+              index++;
+            }
+          }
+        }
+
+        // MENGUBAH SKOR SEBELUMNYA
+        const { message: msg, data: pesertaSebelumnya } = getData(`${dataAntrian.bracket}:${dataAntrian.rondeSebelum}`);
+        if(msg === "success") {
+          for (let i = 0; i < pesertaSebelumnya.seeds.length; i++) {
+            const seed: Seed = pesertaSebelumnya.seeds[i];
+            const pesertaSekarang: Seed[] = peserta;
+            for(let p = 0; p < pesertaSekarang.length; p++) {
+              for (let t = 0; t < seed.teams.length; t++) {
+                if(seed.teams[t].name === pesertaSekarang[p].teams[t]?.name) {
+                  seed.teams[t].score = pesertaSekarang[p].teams[t]?.score;
+                }
+              }
+            }
+          }
+
+          writeData(`${dataAntrian.bracket}:${dataAntrian.rondeSebelum}`, pesertaSebelumnya);
+        }
+
+        writeData(`${dataAntrian.bracket}:${dataAntrian.title}`, rondeSebelum);
+        deleteData(`Antrian:${ronde}`);
+        redirect(`/${dataAntrian.bracket.toLowerCase()}/${ronde}`);
+      }
+    }
+  }
+
   let nextRonde = "";
   let currentRonde = "";
   const { data: dataRepechange } = getData("Repechange");
-  const totalCurrentPeserta = dataRepechange.map((item: any) => item?.seeds).flat();
+  const totalCurrentPeserta = dataRepechange
+    .map((item: any) => item?.seeds)
+    .flat();
   const { data: dataPeserta } = getData(`User`);
-  const totalPeserta = folder == "Repechange" ? totalCurrentPeserta.length : dataPeserta.length;
+  const totalPeserta =
+    folder == "Repechange" ? totalCurrentPeserta.length : dataPeserta.length;
 
   // CARI RONDE SELANJUTNYA
   if (totalPeserta == 2) {
@@ -205,7 +317,16 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
     }
   }
 
-  
+  // TAMBAHKAN PESERTA ANTRIAN JIKA ADA
+  if (antrian.length > 0) {
+    const newRonde = {
+      title: nextRonde,
+      rondeSebelum: currentRonde,
+      bracket: folder,
+      seeds: antrian,
+    };
+    writeData(`Antrian:${nextRonde}`, newRonde);
+  }
 
   // MENGUBAH SKOR PESERTA SEBELUMNYA
   const { message: msg, data: pesertaSebelumnya } = getData(
@@ -261,7 +382,7 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
 
   try {
     writeData(`${folder}:${nextRonde}`, rondeBerikutnya);
-    if(nextRonde === "Winner" && folder != "Repechange") {
+    if (nextRonde === "Winner" && folder != "Repechange") {
       createRepechange();
       return "winner";
     }
@@ -285,7 +406,9 @@ const getRepechangeParticipants = () => {
 
   // Cek semua ronde sebelumnya (kecuali Winner dan Finals)
   const kecuali = ["Winner", "Finals"];
-  const allRounds = getNamaFileInFolder("Ronde").data.map((file: string) => file.split(".")[0]).filter((round: string) => !kecuali.includes(round)); // Ambil semua ronde kecuali Winner dan Finals
+  const allRounds = getNamaFileInFolder("Ronde")
+    .data.map((file: string) => file.split(".")[0])
+    .filter((round: string) => !kecuali.includes(round)); // Ambil semua ronde kecuali Winner dan Finals
   for (const ronde of allRounds) {
     const { message, data } = getData(`Ronde:${ronde}`);
     if (message !== "success") continue;
@@ -295,8 +418,7 @@ const getRepechangeParticipants = () => {
       const [team1, team2] = seed.teams;
       if (!team1?.name || !team2?.name) continue;
 
-      const pemenang =
-        team1.score > team2.score ? team1.name : team2.name;
+      const pemenang = team1.score > team2.score ? team1.name : team2.name;
       const kalah = pemenang === team1.name ? team2.name : team1.name;
 
       if (finalistNames.includes(pemenang)) {
@@ -313,7 +435,6 @@ const getRepechangeParticipants = () => {
 
   return pesertaRepechange;
 };
-
 
 const createRepechange = () => {
   const peserta = getRepechangeParticipants();

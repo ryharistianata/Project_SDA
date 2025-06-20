@@ -66,7 +66,7 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
 
   return (
     <section className="mt-5 flex gap-5 justify-center flex-col">
-      {skor && skor[0]?.teams[0]?.name == "" && (
+      {skor && skor[0]?.teams[0]?.name == "" && skor && skor[0]?.teams[1]?.name == "" && (
         <section className="flex items-center justify-center gap-5">
           <h1 className="text-2xl poppins-semibold">Belum Ada Pertandingan</h1>
         </section>
@@ -148,7 +148,7 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
             </section>
           );
         })}
-      <Button disabled={skor && skor[0]?.teams[0]?.name == ""} className="my-5 cursor-pointer disabled:bg-blue-500/50 bg-blue-500 hover:bg-blue-700 mx-auto w-40 text-slate-200" onClick={handleSubmit}>
+      <Button disabled={skor && skor[0]?.teams[0]?.name == "" && skor && skor[0]?.teams[1]?.name == ""} className="my-5 cursor-pointer disabled:bg-blue-500/50 bg-blue-500 hover:bg-blue-700 mx-auto w-40 text-slate-200" onClick={handleSubmit}>
         Simpan
       </Button>
     </section>
