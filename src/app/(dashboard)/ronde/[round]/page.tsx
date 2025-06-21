@@ -4,6 +4,7 @@ import { getData } from "@/lib/database";
 const Ronde = async ({ params }: { params: Promise<{ round: string }> }) => {
   const { round } = await params;
   const { data } = getData(`Ronde:${round}`);
+  
 
   return (
     <section className="mt-5 lg:p-5 lg:ps-10 overflow-x-hidden overflow-y-auto">

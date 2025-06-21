@@ -1,0 +1,20 @@
+[
+  [
+    {
+      "name": "Satriyo",
+      "score": 2,
+      "gambar": "/person.png",
+      "alamat": "lampung",
+      "tim": "external",
+      "juara": "1"
+    },
+    {
+      "name": "Dono",
+      "score": 0,
+      "gambar": "/person.png",
+      "alamat": "bantul",
+      "tim": "keilmuan",
+      "juara": "2"
+    }
+  ]
+]

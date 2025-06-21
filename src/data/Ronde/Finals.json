@@ -7,18 +7,18 @@
       "roundTitle": "Utama",
       "teams": [
         {
-          "name": "",
-          "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "name": "Satriyo",
+          "score": 2,
+          "gambar": "/person.png",
+          "alamat": "lampung",
+          "tim": "external"
         },
         {
-          "name": "",
+          "name": "Dono",
           "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "gambar": "/person.png",
+          "alamat": "bantul",
+          "tim": "keilmuan"
         }
       ]
     }

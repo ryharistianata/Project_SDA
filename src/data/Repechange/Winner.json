@@ -3,14 +3,14 @@
   "seeds": [
     {
       "id": 1,
+      "roundTitle": "Repechange",
       "date": "",
-      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "Satriyo",
+          "name": "madun",
           "score": 0,
-          "gambar": "/person.png",
-          "alamat": "lampung",
+          "gambar": "/gambar/5foyomg.png",
+          "alamat": "sukarame",
           "tim": "external"
         }
       ]

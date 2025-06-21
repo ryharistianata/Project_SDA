@@ -7,18 +7,18 @@
       "roundTitle": "Utama",
       "teams": [
         {
-          "name": "Veri",
-          "score": 10,
+          "name": "Satriyo",
+          "score": 2,
           "gambar": "/person.png",
-          "alamat": "teluk",
-          "tim": "medin"
+          "alamat": "lampung",
+          "tim": "external"
         },
         {
-          "name": "Raffael",
+          "name": "Rafly Saputra",
           "score": 0,
-          "gambar": "/person.png",
-          "alamat": "bantul",
-          "tim": "kewirausahaan"
+          "gambar": "/gambar/lwuj082.png",
+          "alamat": "teluk",
+          "tim": "RafAI"
         }
       ]
     },
@@ -28,18 +28,18 @@
       "roundTitle": "Utama",
       "teams": [
         {
-          "name": "madun",
+          "name": "ikbal",
           "score": 0,
-          "gambar": "/gambar/5foyomg.png",
+          "gambar": "/gambar/laheny7.png",
           "alamat": "sukarame",
-          "tim": "external"
+          "tim": "medin"
         },
         {
-          "name": "Satriyo",
-          "score": 20,
+          "name": "Raffael",
+          "score": 2,
           "gambar": "/person.png",
-          "alamat": "lampung",
-          "tim": "external"
+          "alamat": "bantul",
+          "tim": "kewirausahaan"
         }
       ]
     },
@@ -49,18 +49,18 @@
       "roundTitle": "Utama",
       "teams": [
         {
-          "name": "Rafly Saputra",
-          "score": 20,
-          "gambar": "/gambar/lwuj082.png",
-          "alamat": "teluk",
-          "tim": "RafAI"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         },
         {
-          "name": "Dono",
+          "name": "",
           "score": 0,
-          "gambar": "/person.png",
-          "alamat": "bantul",
-          "tim": "keilmuan"
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     },
@@ -70,18 +70,18 @@
       "roundTitle": "Utama",
       "teams": [
         {
-          "name": "ikbal",
-          "score": 10,
-          "gambar": "/gambar/laheny7.png",
-          "alamat": "sukarame",
-          "tim": "medin"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         },
         {
-          "name": "Lili",
+          "name": "",
           "score": 0,
-          "gambar": "/person.png",
-          "alamat": "lampung",
-          "tim": "keilmuan"
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     }
