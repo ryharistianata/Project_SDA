@@ -4,7 +4,7 @@ import Image from "next/image";
 const Card = ({ peserta, user }: { peserta: User, user: User }) => {
   return (
     <section className="min-w-80 max-w-96 w-80 rounded-md shadow-md bg-slate-100 p-3 flex gap-4 relative">
-      {user.username === peserta.username && <p className="absolute top-0 right-0 bg-blue-500 p-2 text-slate-200 rounded-md text-xs inline-block">You</p>}
+      {user.id === peserta.id && <p className="absolute top-0 right-0 bg-blue-500 p-2 text-slate-200 rounded-md text-xs inline-block">You</p>}
       <section className="flex items-center justify-center">
         <Image
           src={peserta.gambar ?? "/person.png"}

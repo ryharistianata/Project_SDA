@@ -44,6 +44,14 @@
     display: none !important;
   }
 
+  .line::after {
+    @apply !rounded-sm;
+  }
+
+  .line::before {
+    @apply !w-[1.5rem];
+  }
+
   .text-dump {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   }

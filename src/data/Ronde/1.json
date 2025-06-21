@@ -4,19 +4,20 @@
     {
       "id": 1,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "rudi",
-          "score": 30,
-          "gambar": "/person.png",
+          "name": "ikbal",
+          "score": 0,
+          "gambar": "/gambar/laheny7.png",
           "alamat": "sukarame",
-          "tim": "external"
+          "tim": "medin"
         },
         {
-          "name": "rafly",
-          "score": 10,
+          "name": "Dono",
+          "score": 0,
           "gambar": "/person.png",
-          "alamat": "sekret",
+          "alamat": "bantul",
           "tim": "keilmuan"
         }
       ]
@@ -24,60 +25,63 @@
     {
       "id": 2,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "bedul",
+          "name": "Veri",
           "score": 0,
-          "gambar": "/gambar/dgs1k1u.jpg",
-          "alamat": "lampung",
-          "tim": "4x"
+          "gambar": "/person.png",
+          "alamat": "teluk",
+          "tim": "medin"
         },
         {
-          "name": "Roni",
-          "score": 20,
+          "name": "Satriyo",
+          "score": 0,
           "gambar": "/person.png",
-          "alamat": "banten",
-          "tim": "rafai"
+          "alamat": "lampung",
+          "tim": "external"
         }
       ]
     },
     {
       "id": 3,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "budi",
+          "name": "madun",
           "score": 0,
           "gambar": "/gambar/5foyomg.png",
           "alamat": "sukarame",
-          "tim": "madun"
+          "tim": "external"
         },
         {
-          "name": "dono",
-          "score": 20,
+          "name": "Raffael",
+          "score": 0,
           "gambar": "/person.png",
-          "alamat": "sekret",
-          "tim": "surabaya"
+          "alamat": "bantul",
+          "tim": "kewirausahaan"
         }
       ]
     },
     {
       "id": 4,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "tung tung sahur",
-          "score": 10,
-          "gambar": "/gambar/dgs1k1u.jpg",
-          "alamat": "lampung",
-          "tim": "4x"
+          "name": "Rafly Saputra",
+          "score": 0,
+          "gambar": "/gambar/lwuj082.png",
+          "alamat": "teluk",
+          "tim": "RafAI"
         },
         {
-          "name": "ikbal",
+          "name": "Lili",
           "score": 0,
-          "gambar": "/gambar/laheny7.png",
-          "alamat": "sekret",
-          "tim": "medin"
+          "gambar": "/person.png",
+          "alamat": "lampung",
+          "tim": "keilmuan"
         }
       ]
     }

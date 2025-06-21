@@ -10,34 +10,21 @@ import {
 import { redirect } from "next/navigation";
 import { MixinAlert } from "./alert";
 
+// ALGORITMA ROUND ROBIN
 const RoundRobbin = (n: number) => Math.pow(2, Math.ceil(Math.log2(n)));
 
-const createBracket = async (peserta: User[]) => {
-  if (!peserta.length) return false;
+// FUNGSI UNTUK MEMBAGI PESERTA ATAS BAWAH
+const shuffle = <T>(array: T[]): T[] => {
+  const atas: T[] = [];
+  const bawah: T[] = [];
+  for (let i = 0; i < array.length; i++) {
+    if (i % 2 === 0) atas.push(array[i]);
+    else bawah.push(array[i]);
+  }
+  return [...atas, ...bawah];
+};
 
-  // RESET SEMUA DATA
-  const { message, data: fileRepechange } = getNamaFileInFolder("Repechange");
-  const { message: messageRonde, data: fileRonde } =
-    getNamaFileInFolder("Ronde");
-  const { message: messageAntrian, data: fileAntrian } =
-    getNamaFileInFolder("Antrian");
-  if (message === "success") {
-    for (const file of fileRepechange) {
-      deleteData(`Repechange:${file.split(".")[0]}`);
-    }
-  }
-  if (messageRonde === "success") {
-    for (const file of fileRonde) {
-      deleteData(`Ronde:${file.split(".")[0]}`);
-    }
-  }
-  if (messageAntrian === "success") {
-    for (const file of fileAntrian) {
-      deleteData(`Antrian:${file.split(".")[0]}`);
-    }
-  }
-
-  // Zig-zag peserta by alamat
+const urutkanByAlamat = (peserta: User[]) => {
   const alamat: { [key: string]: User[] } = {};
   peserta.forEach((item) => {
     const key = item.alamat.toLowerCase();
@@ -45,26 +32,99 @@ const createBracket = async (peserta: User[]) => {
     alamat[key].push(item);
   });
 
-  // Urutkan peserta secara vertical
-  const groupUsers = Object.values(alamat);
-  const maxUsers = Math.max(...groupUsers.map((g) => g.length));
-  const users: User[] = [];
-  for (let i = 0; i < maxUsers; i++) {
-    groupUsers.forEach((group) => {
-      if (i < group.length) users.push(group[i]);
-    });
-  }
+  return Object.values(alamat);
+};
 
-  // Buat repechange
+const bagiPeserta = (GroupPeserta: User[][]) => {
+  const atas: User[] = [];
+  const bawah: User[] = [];
+  GroupPeserta.forEach((group) => {
+    const half = Math.ceil(group.length / 2);
+    atas.push(...group.slice(0, half));
+    bawah.push(...group.slice(half));
+  });
+
+  return [atas, bawah];
+};
+
+// FUNGSI UNTUK MERESET SEMUA DATA
+const resetData = (namaFolder: string) => {
+  const { message, data } = getNamaFileInFolder(namaFolder);
+  if (message === "success") {
+    for (const file of data) {
+      const namaFile = file.split(".")[0];
+      deleteData(`${namaFolder}:${namaFile}`);
+    }
+  }
+};
+
+// FUNGSI UNTUK MENGAMBIL PEMENANG PESERTA
+const getPemenang = (peserta: Seed[]) => {
+  const antrian: Seed[] = [];
+  const pesertaPemenang = peserta
+    .map((seed: Seed) => {
+      const [team1, team2] = seed.teams;
+      if (team1.name !== "" && team2.name !== "") {
+        // CEK JIKA SCORE SAMA MASUK KEDALAM ANTRIAN
+        if (team1.score === team2.score) {
+          antrian.push(seed);
+          return {
+            name: "",
+            score: 0,
+            gambar: "",
+            alamat: "",
+            tim: "",
+          };
+        } else {
+          // CEK JIKA SCORE BERBEDA MASUK KEDALAM PEMENANG
+          return team1.score > team2.score ? team1 : team2;
+        }
+      }
+      return null;
+    })
+    .filter(Boolean);
+
+  return { pesertaPemenang, antrian };
+};
+
+const createBracket = async (peserta: User[]) => {
+  if (!peserta.length) return false;
+
+  // RESET SEMUA DATA
+  resetData("Repechange");
+  resetData("Ronde");
+  resetData("Antrian");
+  resetData("Pemenang");
+
+  // ACAK PESERTA
+  const acakPeserta: User[] = peserta.sort(() => Math.random() - 0.5);
+
+  // KELOMPOKAN PESERTA BERDASARKAN ALAMAT
+  const groupUsers = urutkanByAlamat(acakPeserta);
+  // BAGI PESERTA ATAS DAN BAWAH
+  let [atas, bawah] = bagiPeserta(groupUsers);
+  atas = shuffle(atas);
+  bawah = shuffle(bawah);
+  const users: User[] = [...atas, ...bawah];
+
+  // BUAT BRACKET
   const totalPeserta = users.length;
-  const totalSlot = RoundRobbin(totalPeserta); // Pengecekkan total bracket
+  const totalSlot = RoundRobbin(totalPeserta);
   const totalBay = totalSlot - totalPeserta;
-  const totalRonde = Math.log2(totalSlot) + 1; // 3 + 1 = 4 ronde
+  const totalRonde = Math.log2(totalSlot) + 1;
 
   // Masukkan peserta jika ada yang nge bye
   const pesertaMain = [...users];
   let pesertaBay: User[] = [];
-  if (totalBay != 0) pesertaBay = pesertaMain.splice(-totalBay);
+  if (totalBay > 0) {
+    pesertaBay = pesertaMain.splice(-totalBay);
+    const acakPeserta: User[] = pesertaBay.sort(() => Math.random() - 0.5);
+    const groupUsers = urutkanByAlamat(acakPeserta);
+    let [atas, bawah] = bagiPeserta(groupUsers);
+    atas = shuffle(atas);
+    bawah = shuffle(bawah);
+    pesertaBay = [...atas, ...bawah];
+  }
 
   // Buat semua bracket ronde
   const bracket: any[] = [];
@@ -79,6 +139,7 @@ const createBracket = async (peserta: User[]) => {
     const seeds = Array.from({ length: jumlahSeed }, (_, j) => ({
       id: j + 1,
       date: "",
+      roundTitle: "Utama",
       teams: [
         { name: "", score: 0, gambar: "", alamat: "", tim: "" },
         { name: "", score: 0, gambar: "", alamat: "", tim: "" },
@@ -93,6 +154,7 @@ const createBracket = async (peserta: User[]) => {
     bracket[findIndex].seeds[0] = {
       id: 1,
       date: "",
+      roundTitle: "Utama",
       teams: [{ name: "", score: 0, gambar: "", alamat: "", tim: "" }],
     };
   }
@@ -120,7 +182,7 @@ const createBracket = async (peserta: User[]) => {
     ];
   }
 
-  // ISI BAY ke ROUND 2
+  // ISI BAY kE ROUND 2
   const round2 = bracket[1];
   for (let i = 0; i < pesertaBay.length; i++) {
     for (let j = round2.seeds.length - 1; j >= 0; j--) {
@@ -147,7 +209,7 @@ const createBracket = async (peserta: User[]) => {
     for (const round of bracket) {
       writeData(`Ronde:${round.title}`, round);
     }
-    return true;
+    return bracket[0].title;
   } catch (err) {
     console.error("Error simpan:", err);
     return false;
@@ -156,29 +218,7 @@ const createBracket = async (peserta: User[]) => {
 
 const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
   // AMBIL PEMENANG PESERTA MASUKAN DALAM ARRAY
-  const antrian: Seed[] = [];
-  const pesertaPemenang = peserta
-    .map((seed) => {
-      const [team1, team2] = seed.teams;
-      if (team1.name !== "" && team2.name !== "") {
-        // CEK JIKA SCORE SAMA MASUK KEDALAM ANTRIAN
-        if (team1.score === team2.score) {
-          antrian.push(seed);
-          return {
-            name: "",
-            score: 0,
-            gambar: "",
-            alamat: "",
-            tim: "",
-          };
-        } else {
-          // CEK JIKA SCORE BERBEDA MASUK KEDALAM PEMENANG
-          return team1.score > team2.score ? team1 : team2;
-        }
-      }
-      return null;
-    })
-    .filter(Boolean);
+  const { pesertaPemenang, antrian } = getPemenang(peserta);
 
   // CEK RONDE ANTRIAN
   if (folder != "Antrian") {
@@ -192,7 +232,7 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
   // CEK RONDE ANTRIAN PESERTA
   if (folder == "Antrian") {
     // CEK JIKA SKOR MASIH SAMA LAGI MASUK KEDALAM ANTRIAN
-    if(antrian.length > 0) {
+    if (antrian.length > 0) {
       MixinAlert("warning", "Skor masih sama, masuk kedalam antrian");
       redirect(`/antrian/${ronde}`);
     }
@@ -206,7 +246,6 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
       const { message: messageSebelum, data: rondeSebelum } = getData(
         `${dataAntrian.bracket}:${dataAntrian.title}`
       );
-
 
       if (messageSebelum === "success") {
         for (
@@ -232,21 +271,26 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
         }
 
         // MENGUBAH SKOR SEBELUMNYA
-        const { message: msg, data: pesertaSebelumnya } = getData(`${dataAntrian.bracket}:${dataAntrian.rondeSebelum}`);
-        if(msg === "success") {
+        const { message: msg, data: pesertaSebelumnya } = getData(
+          `${dataAntrian.bracket}:${dataAntrian.rondeSebelum}`
+        );
+        if (msg === "success") {
           for (let i = 0; i < pesertaSebelumnya.seeds.length; i++) {
             const seed: Seed = pesertaSebelumnya.seeds[i];
             const pesertaSekarang: Seed[] = peserta;
-            for(let p = 0; p < pesertaSekarang.length; p++) {
+            for (let p = 0; p < pesertaSekarang.length; p++) {
               for (let t = 0; t < seed.teams.length; t++) {
-                if(seed.teams[t].name === pesertaSekarang[p].teams[t]?.name) {
+                if (seed.teams[t].name === pesertaSekarang[p].teams[t]?.name) {
                   seed.teams[t].score = pesertaSekarang[p].teams[t]?.score;
                 }
               }
             }
           }
 
-          writeData(`${dataAntrian.bracket}:${dataAntrian.rondeSebelum}`, pesertaSebelumnya);
+          writeData(
+            `${dataAntrian.bracket}:${dataAntrian.rondeSebelum}`,
+            pesertaSebelumnya
+          );
         }
 
         writeData(`${dataAntrian.bracket}:${dataAntrian.title}`, rondeSebelum);
@@ -325,6 +369,9 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
       bracket: folder,
       seeds: antrian,
     };
+    if (nextRonde == "Winner") {
+      redirect(`/${folder.toLowerCase()}/${currentRonde}`);
+    }
     writeData(`Antrian:${nextRonde}`, newRonde);
   }
 
@@ -377,6 +424,67 @@ const updateBracket = (peserta: Seed[], ronde: string, folder: string) => {
         };
         index++;
       }
+    }
+  }
+
+  // MASUKKAN PEMENANG PESERTA
+  if (nextRonde == "Winner") {
+    if (folder == "Ronde") {
+      const pesertaPemenang = peserta.map((p: Seed) => {
+        const [team1, team2] = p.teams;
+        if (team1.score > team2.score) {
+          return [
+            {
+              ...team1,
+              juara: "1",
+            },
+            {
+              ...team2,
+              juara: "2",
+            },
+          ];
+        } else {
+          return [
+            {
+              ...team2,
+              juara: "1",
+            },
+            {
+              ...team1,
+              juara: "2",
+            },
+          ];
+        }
+      });
+      writeData(`Pemenang:1`, pesertaPemenang);
+    } else if (folder == "Repechange") {
+      const pesertaPemenang = peserta.map((p: Seed) => {
+        const [team1, team2] = p.teams;
+        if (team1.score > team2.score) {
+          return [
+            {
+              ...team1,
+              juara: "3",
+            },
+            {
+              ...team2,
+              juara: "4",
+            },
+          ];
+        } else {
+          return [
+            {
+              ...team2,
+              juara: "3",
+            },
+            {
+              ...team1,
+              juara: "4",
+            },
+          ];
+        }
+      });
+      writeData(`Pemenang:2`, pesertaPemenang);
     }
   }
 
@@ -460,6 +568,7 @@ const createRepechange = () => {
     const seeds = Array.from({ length: jumlahSeed }, (_, j) => ({
       id: j + 1,
       date: "",
+      roundTitle: "Repechange",
       teams: [
         { name: "", score: 0, gambar: "", alamat: "", tim: "" },
         { name: "", score: 0, gambar: "", alamat: "", tim: "" },
@@ -473,6 +582,7 @@ const createRepechange = () => {
   if (findIndex !== -1) {
     bracket[findIndex].seeds[0] = {
       id: 1,
+      roundTitle: "Repechange",
       date: "",
       teams: [{ name: "", score: 0, gambar: "", alamat: "", tim: "" }],
     };

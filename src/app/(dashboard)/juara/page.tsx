@@ -2,25 +2,51 @@
 
 import Loading from "@/app/loading";
 import Image from "next/image";
-import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then((res) => res.json());
 
 const Juara = () => {
-  const { data: dataWin, isLoading: loading1 } = useSWR("/api/ronde/winner", fetcher);
-  const { data: dataFin, isLoading: loading2 } = useSWR("/api/ronde/finals", fetcher);
-  const { data: RepDataFin, isLoading: loading3 } = useSWR("api/repechange/winner", fetcher);
-  
-  if (loading1 || loading2 || loading3) return <Loading />;
-  if(dataWin.message !== "success" || dataFin.message !== "success" || RepDataFin.message !== "success") return redirect("/");
-  
+  const [ juara1, setJuara1 ] = useState({
+      name: "",
+      score: 0,
+      gambar: "",
+      alamat: "",
+      tim: "",
+      juara: ""
+    });
+  const [ juara2, setJuara2 ] = useState({
+      name: "",
+      score: 0,
+      gambar: "",
+      alamat: "",
+      tim: "",
+      juara: ""
+    });
+  const [ juara3, setJuara3 ] = useState({
+      name: "",
+      score: 0,
+      gambar: "",
+      alamat: "",
+      tim: "",
+      juara: ""
+    });
+  const { data: juaraUtama, isLoading: loading1 } = useSWR(`/api/pemenang/1`, fetcher);
+  const { data: juaraRepechange, isLoading: loading2 } = useSWR(`/api/pemenang/2`, fetcher);
 
-  const juara1 = dataWin.data?.seeds[0]?.teams[0];
-  const juara2 = dataFin.data?.seeds[0]?.teams.find(
-    (item: any) => item.name !== juara1.name
-  );
-  const juara3 = RepDataFin.data?.seeds[0]?.teams[0];
+  useEffect(() => {
+    if(juaraUtama && juaraRepechange) {
+      const mergeJuara = [...juaraUtama.data.flat(), ...juaraRepechange.data.flat()];
+      mergeJuara.forEach((juara: any) => {
+        if(juara.juara === "1") setJuara1(juara);
+        if(juara.juara === "2") setJuara2(juara);
+        if(juara.juara === "3") setJuara3(juara);
+      })
+    }
+  },[juaraUtama, juaraRepechange]);
+  
+  if(loading1 || loading2) return <Loading />;
 
   return (
     <section className="h-[calc(100vh-100px)] w-full overflow-hidden flex items-end justify-center">

@@ -13,6 +13,7 @@ import { MixinAlert } from "@/lib/alert";
 
 const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string; folder:string }) => {
   const [skor, setSkor] = useState<Seed[]>([]);
+  const [cekPeserta, setCekPeserta] = useState<number>(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
           return null
         }
       })).flat().filter(Boolean);
+      setCekPeserta(cekPeserta);
 
       if(cekPeserta.length <= 1 && ronde !== "winner") {
         router.push(`/antrian/${ronde}`);
@@ -81,7 +83,7 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
 
   return (
     <section className="mt-5 flex gap-5 justify-center flex-col">
-      {skor && skor[0]?.teams[0]?.name == "" && skor[0]?.teams[1]?.name == "" && (
+      {cekPeserta && cekPeserta <= 1 && (
         <section className="flex items-center justify-center gap-5">
           <h1 className="text-2xl poppins-semibold">Belum Ada Pertandingan</h1>
         </section>
@@ -93,7 +95,7 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
               key={index}
               className="flex items-center justify-center gap-5"
             >
-              {(item.teams[0]?.name !== "" && item.teams[1]?.name !== "") ? (
+              {(item.teams[0]?.name !== "" && item.teams[1]?.name !== "") && 
                 <>
                   <section className="min-w-80 max-w-96 w-80 rounded-md shadow-md bg-slate-100 p-3 flex gap-5 items-center">
                     <Image
@@ -157,13 +159,11 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
                     </section>
                   </section>
                 </>
-              ) : (
-                ""
-              )}
+              }
             </section>
           );
         })}
-      <Button disabled={skor && skor[0]?.teams[0]?.name == "" && skor[0]?.teams[1]?.name == ""} className="my-5 cursor-pointer disabled:bg-blue-500/50 bg-blue-500 hover:bg-blue-700 mx-auto w-40 text-slate-200" onClick={handleSubmit}>
+      <Button disabled={cekPeserta <= 1} className="my-5 cursor-pointer disabled:bg-blue-500/50 bg-blue-500 hover:bg-blue-700 mx-auto w-40 text-slate-200" onClick={handleSubmit}>
         Simpan
       </Button>
     </section>

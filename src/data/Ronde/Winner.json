@@ -4,13 +4,14 @@
     {
       "id": 1,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "rudi",
+          "name": "",
           "score": 0,
-          "gambar": "/person.png",
-          "alamat": "sukarame",
-          "tim": "external"
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     }

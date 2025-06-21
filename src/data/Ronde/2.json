@@ -4,40 +4,42 @@
     {
       "id": 1,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "rudi",
-          "score": 30,
-          "gambar": "/person.png",
-          "alamat": "sukarame",
-          "tim": "external"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         },
         {
-          "name": "Roni",
-          "score": 20,
-          "gambar": "/person.png",
-          "alamat": "banten",
-          "tim": "rafai"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     },
     {
       "id": 2,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "dono",
-          "score": 30,
-          "gambar": "/person.png",
-          "alamat": "sekret",
-          "tim": "surabaya"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         },
         {
-          "name": "tung tung sahur",
-          "score": 10,
-          "gambar": "/gambar/dgs1k1u.jpg",
-          "alamat": "lampung",
-          "tim": "4x"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     }

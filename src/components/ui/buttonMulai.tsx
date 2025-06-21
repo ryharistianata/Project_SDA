@@ -15,7 +15,7 @@ const ButtonMulai = ({peserta}: {peserta: User[]}) => {
         const response = await createBracket(peserta);
         if (response) {
           MixinAlert("success", "Pertandingan berhasil dimulai");
-          router.push("/ronde/1");
+          router.push(`/ronde/${response}`);
         } else {
           MixinAlert("success", "Pertandingan gagal dimulai");
         }

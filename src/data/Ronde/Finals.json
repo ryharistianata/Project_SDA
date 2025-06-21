@@ -4,20 +4,21 @@
     {
       "id": 1,
       "date": "",
+      "roundTitle": "Utama",
       "teams": [
         {
-          "name": "rudi",
-          "score": 30,
-          "gambar": "/person.png",
-          "alamat": "sukarame",
-          "tim": "external"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         },
         {
-          "name": "dono",
-          "score": 10,
-          "gambar": "/person.png",
-          "alamat": "sekret",
-          "tim": "surabaya"
+          "name": "",
+          "score": 0,
+          "gambar": "",
+          "alamat": "",
+          "tim": ""
         }
       ]
     }
