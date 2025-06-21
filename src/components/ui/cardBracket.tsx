@@ -42,7 +42,7 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
         teams: seed.teams.map((team: any) => ({ ...team })),
       }));
 
-      newSkor[indexSeed].teams[indexTeam].score += 10;
+      newSkor[indexSeed].teams[indexTeam].score += 1;
       return newSkor;
     });
   };
@@ -54,7 +54,7 @@ const CardBracket = ({ peserta, ronde, folder }: { peserta: any ; ronde: string;
         teams: seed.teams.map((team: any) => ({ ...team })),
       }));
 
-      newSkor[indexSeed].teams[indexTeam].score -= 10;
+      newSkor[indexSeed].teams[indexTeam].score -= 1;
       return newSkor;
     });
   };

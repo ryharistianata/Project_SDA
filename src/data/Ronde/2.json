@@ -7,18 +7,18 @@
       "roundTitle": "Utama",
       "teams": [
         {
-          "name": "",
+          "name": "Veri",
           "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "gambar": "/person.png",
+          "alamat": "teluk",
+          "tim": "medin"
         },
         {
-          "name": "",
+          "name": "Satriyo",
           "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "gambar": "/person.png",
+          "alamat": "lampung",
+          "tim": "external"
         }
       ]
     },
@@ -28,18 +28,18 @@
       "roundTitle": "Utama",
       "teams": [
         {
-          "name": "",
+          "name": "Rafly Saputra",
           "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "gambar": "/gambar/lwuj082.png",
+          "alamat": "teluk",
+          "tim": "RafAI"
         },
         {
-          "name": "",
+          "name": "ikbal",
           "score": 0,
-          "gambar": "",
-          "alamat": "",
-          "tim": ""
+          "gambar": "/gambar/laheny7.png",
+          "alamat": "sukarame",
+          "tim": "medin"
         }
       ]
     }
